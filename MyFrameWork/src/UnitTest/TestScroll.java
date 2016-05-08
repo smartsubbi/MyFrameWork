@@ -1,9 +1,7 @@
 package UnitTest;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,22 +10,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.opera.OperaOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Factory.BrowserFactory;
 import Factory.ConfigDataProviderFactory;
 import Factory.EnvironmentFactory;
 import Pages.CommonHeader;
 import Pages.MembershipPage;
-import Utility.BrowserCredentialLogger;
 import Utility.CaptureScreenshot;
 
 public class TestScroll 
@@ -146,7 +138,7 @@ public class TestScroll
 		header.clickMembershipTab();
 		System.out.println("Clicking membership tab done");
 		Thread.sleep(10000);				
-		membershipPage.verifyAllMembersipOptionsAndFeatures();		
+		//membershipPage.verifyAllMembersipOptionsAndFeatures();		
 		//membershipPage.verifySelectPaymentMethodDBandPaymentForm();				
 	}
 	

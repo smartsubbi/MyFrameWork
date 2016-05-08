@@ -618,13 +618,13 @@ public class MembershipPage
 		Thread.sleep(10000);			
 	    verifySelectAPaymentMethodDB();
 	    logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
-	  //  HighLighter.elementHighLight(driver, selectAPaymentMethodDB);
+	  
 		String selectAPaymentMethodDBPayPalScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBPayPalScreenshot"));
 		logger.log(LogStatus.INFO, selectAPaymentMethodDBPayPalScreenshot);
 	    Thread.sleep(5000);
 		selectPaymentMethodPayPal.click();
 		logger.log(LogStatus.INFO, "Selecting Payment method as PayPal for : "+membershipType);
-		//HighLighter.elementHighLight(driver, selectPaymentMethodPayPal);
+		
 		String selectPaymentMethodPayPalScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodPayPalScreenshot"));
 		logger.log(LogStatus.INFO, selectPaymentMethodPayPalScreenshot);
 		Thread.sleep(5000);	
@@ -634,7 +634,7 @@ public class MembershipPage
 		logger.log(LogStatus.INFO, "checking PayPal page started for : "+membershipType);
 		verifyPayPalPage(price);		
 		logger.log(LogStatus.INFO, "checking PayPal page done for : "+membershipType);
-		//HighLighter.elementHighLight(driver, selectPaymentMethodPayPal);
+		
 		String payPalPageScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "payPalPageScreenshot"));
 		logger.log(LogStatus.INFO, payPalPageScreenshot);
 		driver.get("https://www.schoolofdragons.com/Membership/Membership.aspx");
@@ -645,13 +645,13 @@ public class MembershipPage
 		Thread.sleep(5000);			
 	    verifySelectAPaymentMethodDB();
 	    logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
-	   // HighLighter.elementHighLight(driver, selectAPaymentMethodDB);
+	   
 		String selectAPaymentMethodDBVisaScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBVisaScreenshot"));
 		logger.log(LogStatus.INFO, selectAPaymentMethodDBVisaScreenshot);
 	    Thread.sleep(5000);
 		selectPaymentMethodVisa.click();	
 		logger.log(LogStatus.INFO, "Selecting Payment method as Visa for : "+membershipType);
-		//HighLighter.elementHighLight(driver, selectPaymentMethodPayPal);
+		
 		String selectPaymentMethodVisaScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodVisaScreenshot"));
 		logger.log(LogStatus.INFO, selectPaymentMethodVisaScreenshot);
 		Thread.sleep(5000);			
@@ -673,13 +673,13 @@ public class MembershipPage
 		Thread.sleep(5000);			
 		verifySelectAPaymentMethodDB();
 		logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
-	   // HighLighter.elementHighLight(driver, selectAPaymentMethodDB);
+	   
 		String selectAPaymentMethodDBMasterCardScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBMasterCardScreenshot"));
 		logger.log(LogStatus.INFO, selectAPaymentMethodDBMasterCardScreenshot);
 		Thread.sleep(5000);			
 		selectPaymentMethodMasterCard.click();
 		logger.log(LogStatus.INFO, "Selecting Payment method as Visa for : "+membershipType);
-		//HighLighter.elementHighLight(driver, selectPaymentMethodMasterCard);
+		
 		String selectPaymentMethodMasterCardScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodMasterCardScreenshot"));
 		logger.log(LogStatus.INFO, selectPaymentMethodMasterCardScreenshot);
 		Thread.sleep(5000);
