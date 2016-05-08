@@ -9,7 +9,11 @@ public class SendMail
 	@Test
 	public static void sendMail(WebDriver driver,String subject, String mailContent, String age, String userName, String password, String emailAddress, String authorisedOrNot) throws Exception
 	{		
-		String emailIdToSend = System.getProperty("emailid");		
+		String emailIdToSend = System.getProperty("emailid");
+		if(emailIdToSend==null)
+		{
+			emailIdToSend="smartsubbi@gmail.com";
+		}
 		driver.get("https://mail.google.com/");		
 		Thread.sleep(5000);		
 		driver.findElement(By.id("Email")).sendKeys("seleniumsubbu");		
@@ -42,7 +46,11 @@ public class SendMail
 	
 	public static void sendMailOnlyContent(WebDriver driver, String subject, String content) throws Exception
 	{	
-		String emailIdToSend = System.getProperty("emailid");		
+		String emailIdToSend = System.getProperty("emailid");	
+		if(emailIdToSend==null)
+		{
+			emailIdToSend="smartsubbi@gmail.com";
+		}
 		driver.get("https://mail.google.com/");		
 		Thread.sleep(5000);		
 		driver.findElement(By.id("Email")).sendKeys("seleniumsubbu");		
@@ -55,7 +63,7 @@ public class SendMail
 		Thread.sleep(5000);		
 		driver.findElement(By.xpath("//div[.='COMPOSE']")).click();		
 		Thread.sleep(5000);		
-		driver.findElement(By.xpath("//textarea[@aria-label='To']")).sendKeys("smartsubbi@gmail.com");			
+		driver.findElement(By.xpath("//textarea[@aria-label='To']")).sendKeys(emailIdToSend);			
 		Thread.sleep(5000);		
 		driver.findElement(By.xpath("//span[.='Cc']")).click();		
 		Thread.sleep(5000);	
