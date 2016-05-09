@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -160,6 +159,9 @@ public class GemsPage
 	@FindBy(xpath="//form[@id='cashin-form']/div[3]/div[1]/h3[.='Select A Payment Method']")
 	WebElement selectAPaymentMethodText;
 	
+	@FindBy(xpath="//form[@id='cashin-form']/div[2]/div[1]/div/label/div[1][@class='offer-description']")
+	WebElement selectAPaymentMethodPrice;
+	
 	@FindBy(xpath="//div[@id='payment-method-1456']/label/span[1]/span[1]/img[@src='https://livegamer-cashin.s3.amazonaws.com/1/payments/sm-paypal.png']")
 	WebElement selectPaymentMethodPayPal;
 	
@@ -276,7 +278,7 @@ public class GemsPage
 	{
 		firstGemsOptions();
 		logger.log(LogStatus.INFO, "Verified the first Gems Options contents");	
-		HighLighter.elementHighLight(driver, firstGemsOption);
+	//	HighLighter.elementHighLight(driver, firstGemsOption);
 		String firstGemsOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "firstGemsOptionScreenshot"));
 		logger.log(LogStatus.INFO, firstGemsOptionScreenshot);
 		
@@ -400,91 +402,19 @@ public class GemsPage
 		}
 	}
 	
-	public void verifySelectPaymentMethodDBandPaymentFormGeneral(WebElement element,String price, String membershipType,ExtentTest logger) throws Throwable
+	public void verifySelectPaymentMethodDBandPaymentFormGeneral(WebElement element,String selectAPaymentMethodPrice,String payPalPagePrice,String membershipType,ExtentTest logger) throws Throwable
 	{
-		Thread.sleep(5000);	
-		element.click();
-		logger.log(LogStatus.INFO, "Clicked the Buy now button for : "+membershipType+"to verify the PayPal Page");
-		Thread.sleep(10000);			
-	    verifySelectAPaymentMethodDB();
-	    logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
-	  
-		String selectAPaymentMethodDBPayPalScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBPayPalScreenshot"));
-		logger.log(LogStatus.INFO, selectAPaymentMethodDBPayPalScreenshot);
-	    Thread.sleep(5000);
-		selectPaymentMethodPayPal.click();
-		logger.log(LogStatus.INFO, "Selecting Payment method as PayPal for : "+membershipType);
-		
-		String selectPaymentMethodPayPalScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodPayPalScreenshot"));
-		logger.log(LogStatus.INFO, selectPaymentMethodPayPalScreenshot);
-		Thread.sleep(5000);	
-		String currentURL = driver.getCurrentUrl();		
-		Assert.assertTrue(currentURL.contains("https://www.paypal.com"));	
-		logger.log(LogStatus.INFO, "Verifying PayPal page URL for : "+membershipType);
-		logger.log(LogStatus.INFO, "checking PayPal page started for : "+membershipType);
-		verifyPayPalPage(price);		
-		logger.log(LogStatus.INFO, "checking PayPal page done for : "+membershipType);
-		
-		String payPalPageScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "payPalPageScreenshot"));
-		logger.log(LogStatus.INFO, payPalPageScreenshot);
-		driver.get("https://www.schoolofdragons.com/Membership/Membership.aspx");
-		logger.log(LogStatus.INFO, "Going back to Membership page after PayPal page verification is done for : "+membershipType);		
 		Thread.sleep(5000);	
 		element.click();
 		logger.log(LogStatus.INFO, "Clicked the Buy now button for : "+membershipType+"to verify the Visa form");
 		Thread.sleep(5000);			
-	    verifySelectAPaymentMethodDB();
-	    logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
-	   
+	    verifySelectAPaymentMethodDB(selectAPaymentMethodPrice);
+	    logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);	   
 		String selectAPaymentMethodDBVisaScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBVisaScreenshot"));
 		logger.log(LogStatus.INFO, selectAPaymentMethodDBVisaScreenshot);
-	    Thread.sleep(5000);
-		selectPaymentMethodVisa.click();	
-		logger.log(LogStatus.INFO, "Selecting Payment method as Visa for : "+membershipType);
-		
-		String selectPaymentMethodVisaScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodVisaScreenshot"));
-		logger.log(LogStatus.INFO, selectPaymentMethodVisaScreenshot);
-		Thread.sleep(5000);			
-		driver.switchTo().frame(driver.findElements(By.tagName("iframe")).get(0));
-		logger.log(LogStatus.INFO,"Switching to Visa form frame for : "+membershipType);
-		Thread.sleep(10000);			
-		logger.log(LogStatus.INFO,"checking Visa form for : "+membershipType);
-		verifyVisaForm();
-		logger.log(LogStatus.INFO,"checking Visa form done for : "+membershipType);		
-		String visaFormScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "visaFormScreenshot"));
-		logger.log(LogStatus.INFO, visaFormScreenshot);
-		driver.switchTo().defaultContent();
-		logger.log(LogStatus.INFO,"Switching back to default content after verifying visa form for : "+membershipType);
+	    Thread.sleep(5000);		
 		selectAPaymentMethodDBCloseButton.click();	
 		logger.log(LogStatus.INFO,"Closing the form after verifying Visa form for : "+membershipType);		
-		Thread.sleep(5000);	
-		element.click();
-		logger.log(LogStatus.INFO, "Clicked the Buy now button for : "+membershipType+"to verify the MasterCard form");
-		Thread.sleep(5000);			
-		verifySelectAPaymentMethodDB();
-		logger.log(LogStatus.INFO, "Verified the select a Payment DB for : "+membershipType);
-	   
-		String selectAPaymentMethodDBMasterCardScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectAPaymentMethodDBMasterCardScreenshot"));
-		logger.log(LogStatus.INFO, selectAPaymentMethodDBMasterCardScreenshot);
-		Thread.sleep(5000);			
-		selectPaymentMethodMasterCard.click();
-		logger.log(LogStatus.INFO, "Selecting Payment method as Visa for : "+membershipType);
-		
-		String selectPaymentMethodMasterCardScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "selectPaymentMethodMasterCardScreenshot"));
-		logger.log(LogStatus.INFO, selectPaymentMethodMasterCardScreenshot);
-		Thread.sleep(5000);
-		driver.switchTo().frame(driver.findElements(By.tagName("iframe")).get(0));
-		logger.log(LogStatus.INFO,"Switching to Master Card form frame for : "+membershipType);
-		Thread.sleep(10000);			
-		logger.log(LogStatus.INFO,"checking Master Card form for : "+membershipType);
-		verifyVisaForm();
-		logger.log(LogStatus.INFO,"checking Master Card form done for : "+membershipType);	
-		String masterCardFormScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "masterCardFormScreenshot"));
-		logger.log(LogStatus.INFO, masterCardFormScreenshot);
-		driver.switchTo().defaultContent();
-		logger.log(LogStatus.INFO,"Switching back to default content after verifying MasterCard form for : "+membershipType);
-		selectAPaymentMethodDBCloseButton.click();
-		logger.log(LogStatus.INFO,"Closing the form after verifying MasterCard form for : "+membershipType);
 	}
 	
 	public void verifyVisaForm()
@@ -590,12 +520,16 @@ public class GemsPage
 		}		
 	}
 	
-	public void verifySelectAPaymentMethodDB()
+	public void verifySelectAPaymentMethodDB(String selectAPaymentMethodActualPrice)
 	{
 		Assert.assertTrue(selectAPaymentMethodDB!=null);
 		Assert.assertTrue(selectAPaymentMethodDB.isDisplayed());
 		Assert.assertTrue(selectAPaymentMethodDBCloseButton!=null);		
 		Assert.assertTrue(selectAPaymentMethodDBCloseButton.isDisplayed());
+		Assert.assertTrue(selectAPaymentMethodPrice!=null);
+		Assert.assertTrue(selectAPaymentMethodPrice.isDisplayed());
+		String selectAPaymentMethodExpectedPrice = selectAPaymentMethodPrice.getText();
+		Assert.assertEquals(selectAPaymentMethodExpectedPrice, selectAPaymentMethodActualPrice);
 		Assert.assertTrue(selectAPaymentMethodText!=null);
 		Assert.assertTrue(selectAPaymentMethodText.isDisplayed());		
 		Assert.assertTrue(selectPaymentMethodPayPal!=null);
@@ -614,7 +548,7 @@ public class GemsPage
 		logger.log(LogStatus.INFO, "Clicked the first Gems options");						
 		String firstGemsOptionScreenshot=logger.addScreenCapture(CaptureScreenshot.takeScreenshot(driver, "firstGemsOptionScreenshot"));
 		logger.log(LogStatus.INFO, firstGemsOptionScreenshot);		
-		verifySelectPaymentMethodDBandPaymentFormGeneral(firstGemsOption,oneMonthExpectedPrice,"First Gems Option",logger);
+		verifySelectPaymentMethodDBandPaymentFormGeneral(firstGemsOption,selectPaymentMethodDBFirstGemsText,firstGemsPrice1,"First Gems Option",logger);
 		logger.log(LogStatus.INFO,"<b>Verify monthly PaymentMethodDBandPaymentForm done</b>");
 	}
 
